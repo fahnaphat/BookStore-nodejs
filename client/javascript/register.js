@@ -1,5 +1,3 @@
-// register.js
-
 document.getElementById('registerForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const firstname = document.getElementById('firstname').value;
@@ -13,9 +11,27 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    console.log('First Name:', firstname);
-    console.log('Last Name:', lastname);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Add your registration logic here
+    const submitData = async () => {
+        let userData = {
+            role_id: 2,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password
+        }
+
+        // console.log(userData)
+
+        try {
+            const response = await axios.post(
+                'http://localhost:8000/users',
+                userData
+            )
+            // console.log('response data', response.userData)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    submitData()
 });
