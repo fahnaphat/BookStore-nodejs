@@ -33,12 +33,12 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         // console.log(userData)
         try {
             const response = await axios.post(
-                'http://localhost:8000/register/users',
+                'http://localhost:8000/register',
                 userData
             )
             // console.log('response data', response.data)
             alert(response.data.message)
-            window.location.href = './index.html'
+            window.location.href = './login.html'
         } catch (error) {
             let errors = error.errors || []
             let errorMessage = error.message
@@ -58,6 +58,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
                     if (msgErr[0] === "2") { lastnameMsgErr.innerHTML = msgErr[1] }
                     if (msgErr[0] === "3") { emailMsgErr.innerHTML = msgErr[1] }
                     if (msgErr[0] === "4") { passwordMsgErr.innerHTML = msgErr[1] }
+                    if (msgErr[0] === "5") { emailMsgErr.innerHTML = msgErr[1] }
                 }
             }
 

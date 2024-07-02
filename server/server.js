@@ -4,6 +4,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 
 import registerUser from './routes/registerUser.js'
+import authenUser from './routes/authentication.js'
 
 const app = express()
 app.use(bodyParser.json())
@@ -20,7 +21,8 @@ const connectMySQL = async () => {
 }
 
 const setupRoutes = (app, conn) => {
-    app.post('/register/users', (req, res) => registerUser(req, res, conn))
+    app.post('/register', (req, res) => registerUser(req, res, conn))
+    app.post('/authen', (req, res) => authenUser(req, res, conn))
 }
 
 app.listen(8000, async () => {

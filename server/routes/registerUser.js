@@ -42,7 +42,6 @@ const registerUser = async (req, res, conn) => {
         })
     } catch (error) {
         const message = error.message || 'something wrong'
-        // console.error('Error creating user', error.message)
         res.status(500).json({
             message: message,
             errors: error.errors || [] 
