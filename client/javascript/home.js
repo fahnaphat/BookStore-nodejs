@@ -1,20 +1,16 @@
-/* get api for session value */
 axios.defaults.withCredentials = true
-
 axios.get('http://localhost:8000')
     .then(res => {
-        // console.log('Respone:',res)
-        if (res.data.valid) {
+        if(res.data.valid) {
             console.log(res.data.name)
-            let role = res.data.name.split(":")[0]
-            if (role === "1") {
-                window.location.href = './admin.html'
-            } else if (role === "2") {
-                window.location.href = './home.html'
+            let user = res.data.name.split(":")
+            if (user[0] === "2") {
+                document.getElementById('text').textContent = `Welcome ${user[2]} - You can Enroll course.`
+                document.getElementById('login-btn').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'inline-block';
+            } else {
+                window.location.href('./error.html')
             }
-        }
-        else {
-            window.location.href = './login.html'
         }
     })
     .catch(err => console.log(err))
@@ -28,4 +24,4 @@ const logout = () => {
             }
         })
         .catch(err => console.log(err));
-}   
+} 
