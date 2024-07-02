@@ -1,3 +1,17 @@
+axios.defaults.withCredentials = true
+// axios.get('http://localhost:8000')
+//     .then(res => {
+//         // console.log('Respone:',res)
+//         if (res.data.valid) {
+//             console.log(res.data.name)
+//             window.location.href = './index.html'
+//         }
+//         else {
+//             window.location.href = './login.html'
+//         }
+//     })
+//     .catch(err => console.log(err))
+
 const submitLogin = async (event) => {
     event.preventDefault();
     let emailDom = document.getElementById('email').value
@@ -26,17 +40,23 @@ const submitLogin = async (event) => {
             'http://localhost:8000/authen',
             userData
         )
-        alert(response.data.message)
-        window.location.href = './index.html'
-    } catch (error) {
-        let errors = error.errors || []
-        let errorMessage = error.message
+        console.log(response.data)
+        if (response.data.success) { 
+            alert(response.data.message)
+            window.location.href = './index.html'
+        }
 
-        if (error.response && error.response.data) {
-            errors = error.response.data.errors
-            errorMessage = error.response.data.message
-            inputInvalid.innerHTML = errorMessage
-            console.log('Error message:',errorMessage)
+    } catch (error) {
+        // let errors = error.errors || []
+        // let errorMessage = error.message
+        if (error.response) {
+            if (error.response.status === 401) {
+                console.log(error.message)
+                inputInvalid.innerHTML = error.response.data.message
+            } else {
+                console.log(error.message)
+                // navigate to error page (Internal server error)
+            }
         }
     }
 }

@@ -1,8 +1,5 @@
-document.getElementById('registerForm').addEventListener('submit', function(event) {
+const submitRegister = async (event) => {
     event.preventDefault();
-    const firstname = document.getElementById('firstname').value;
-    const lastname = document.getElementById('lastname').value;
-    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
@@ -21,53 +18,48 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         cfPwdMsgErr.innerHTML = 'Passwords do not match'
         return
     }
+    let userData = {
+        role_id: 2,
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    }
+    // console.log(userData)
+    try {
+        const response = await axios.post(
+            'http://localhost:8000/register',
+            userData
+        )
+        // console.log('response data', response.data)
+        alert(response.data.message)
+        window.location.href = './login.html'
+    } catch (error) {
+        let errors = error.errors || []
+        let errorMessage = error.message
 
-    const submitData = async () => {
-        let userData = {
-            role_id: 2,
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password
+        // Add Code for taking error message from server(BE)
+        if (error.response && error.response.data) {
+            errors = error.response.data.errors
+            errorMessage = error.response.data.message      //something wrong
+            // console.log('1:',errors)
+            // console.log('2:',errorMessage)
         }
-        // console.log(userData)
-        try {
-            const response = await axios.post(
-                'http://localhost:8000/register',
-                userData
-            )
-            // console.log('response data', response.data)
-            alert(response.data.message)
-            window.location.href = './login.html'
-        } catch (error) {
-            let errors = error.errors || []
-            let errorMessage = error.message
+        
+        if (errors && errors.length > 0) {
+            for (let i=0; i < errors.length; i++) {
+                let msgErr = errors[i].split(":")
+                if (msgErr[0] === "1") { firstnameMsgErr.innerHTML = msgErr[1] }
+                if (msgErr[0] === "2") { lastnameMsgErr.innerHTML = msgErr[1] }
+                if (msgErr[0] === "3") { emailMsgErr.innerHTML = msgErr[1] }
+                if (msgErr[0] === "4") { passwordMsgErr.innerHTML = msgErr[1] }
+                if (msgErr[0] === "5") { emailMsgErr.innerHTML = msgErr[1] }
+            }
+        }
 
-            // Add Code for taking error message from server(BE)
-            if (error.response && error.response.data) {
-                errors = error.response.data.errors
-                errorMessage = error.response.data.message      //something wrong
-                // console.log('1:',errors)
-                // console.log('2:',errorMessage)
-            }
-            
-            if (errors && errors.length > 0) {
-                for (let i=0; i < errors.length; i++) {
-                    let msgErr = errors[i].split(":")
-                    if (msgErr[0] === "1") { firstnameMsgErr.innerHTML = msgErr[1] }
-                    if (msgErr[0] === "2") { lastnameMsgErr.innerHTML = msgErr[1] }
-                    if (msgErr[0] === "3") { emailMsgErr.innerHTML = msgErr[1] }
-                    if (msgErr[0] === "4") { passwordMsgErr.innerHTML = msgErr[1] }
-                    if (msgErr[0] === "5") { emailMsgErr.innerHTML = msgErr[1] }
-                }
-            }
-
-            if (errors.length == 0 && errorMessage.split(" ")[0] === "Duplicate") {
-                emailMsgErr.innerHTML = "This email is already in use"
-                alert("This email is already in use")
-            }
+        if (errors.length == 0 && errorMessage.split(" ")[0] === "Duplicate") {
+            emailMsgErr.innerHTML = "This email is already in use"
+            alert("This email is already in use")
         }
     }
-
-    submitData();
-});
+}

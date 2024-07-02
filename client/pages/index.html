@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <link rel="stylesheet" href="../style/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../javascript/index.js"></script>
 </head>
 <body>
     <nav>
         <div class="logo">Bookstore</div>
-        <button onclick="window.location.href='login.html'">Login</button>
+        <button id="login-btn" onclick="window.location.href='login.html'">Login</button>
+        <button id="logout-btn" style="display:none;" onclick="logout()">logout</button>
     </nav>
     <main>
-        <h1>Welcome to the Bookstore</h1>
+        <h1 id="sayhi">Welcome to the Bookstore</h1>
     </main>
-    <script src="../javascript/index.js"></script>
 </body>
 </html>

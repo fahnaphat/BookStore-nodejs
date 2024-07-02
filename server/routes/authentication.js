@@ -18,11 +18,16 @@ const authenUser = async (req, res, conn) => {
         const user = results[0];
         const isPasswordMatch = await bcrypt.compare(data.password, user.password);
         if (!isPasswordMatch) return res.status(401).json({ message: 'Email or password is incorrect.' });
+        
+        req.session.name = user.id.toString() + '' + user.firstname
+        console.log('Session:', req.session.name)
 
         // If email and password are correct, respond with 200
         return res.status(200).json({
             message: 'Login Successfully',
+            success: true,
             data: user
+            // sessionname: req.session.name
         });
 
     } catch (error) {
