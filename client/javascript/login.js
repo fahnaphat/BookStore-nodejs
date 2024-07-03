@@ -1,16 +1,16 @@
 axios.defaults.withCredentials = true
-// axios.get('http://localhost:8000')
-//     .then(res => {
-//         // console.log('Respone:',res)
-//         if (res.data.valid) {
-//             console.log(res.data.name)
-//             window.location.href = './index.html'
-//         }
-//         else {
-//             window.location.href = './login.html'
-//         }
-//     })
-//     .catch(err => console.log(err))
+axios.get('http://localhost:8000')
+    .then(res => {
+        // console.log('Respone:',res)
+        if (res.data.valid) {
+            console.log(res.data.name)
+            window.location.href = './index.html'
+        }
+        // else {
+        //     window.location.href = './index.html'
+        // }
+    })
+    .catch(err => console.log(err))
 
 const submitLogin = async (event) => {
     event.preventDefault();

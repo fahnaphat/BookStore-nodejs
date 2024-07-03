@@ -11,12 +11,12 @@ axios.get('http://localhost:8000')
                 document.getElementById('login-btn').style.display = 'none';
                 document.getElementById('logout-btn').style.display = 'inline-block';
             } else {
-                window.location.href = './error.html'
+                window.location.href = './index.html'
             }
         }
-        else {
-            window.location.href = './login.html'
-        }
+        // else {
+        //     window.location.href = './login.html'
+        // }
     })
     .catch(err => console.log(err))
 
@@ -26,7 +26,7 @@ const logout = () => {
         .then(res => {
             // console.log(res)
             if (res.status === 200) {
-                window.location.href = './login.html';
+                window.location.href = './index.html';
             }
         })
         .catch(err => console.log(err));
