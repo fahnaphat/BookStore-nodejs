@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 
 import registerUser from './routes/registerUser.js'
 import authenUser from './routes/authentication.js'
+import courseCreate from './routes/courseCreate.js'
 
 const app = express()
 app.use(bodyParser.json())
@@ -34,7 +35,7 @@ const connectMySQL = async () => {
         host: 'localhost',
         user: 'phpmyadmin',
         password: 'fahnaphat',
-        database: 'bookstore'
+        database: 'coursesweb'
     })
 }
 
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
     }
 })
 
+/* api clear session */
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) { return res.status(500).json({ message: 'Logout failed' }) };
@@ -59,6 +61,7 @@ app.post('/logout', (req, res) => {
 const setupRoutes = (app, conn) => {
     app.post('/register', (req, res) => registerUser(req, res, conn))
     app.post('/authen', (req, res) => authenUser(req, res, conn))
+    app.post('/create/course', (req, res) => courseCreate(req, res, conn))
 }
 
 app.listen(8000, async () => {
