@@ -24,6 +24,7 @@ const courseCreate = async (req, res, conn) => {
             name: courseData.name,
             category: courseData.category,
             teacher: courseData.teacher,
+            status: courseData.status
         }
 
         const [results] = await conn.query('INSERT INTO Subjects SET ?', data)

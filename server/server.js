@@ -9,12 +9,14 @@ import registerUser from './routes/registerUser.js'
 import authenUser from './routes/authentication.js'
 import courseCreate from './routes/courseCreate.js'
 import courseList from './routes/courseList.js'
+import courseEdit from './routes/courseEdit.js'
+import courseById from './routes/courseById.js'
 
 const app = express()
 app.use(bodyParser.json())
 app.use(cors({
     origin: ["http://127.0.0.1:5500"],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 }))
@@ -64,6 +66,8 @@ const setupRoutes = (app, conn) => {
     app.post('/authen', (req, res) => authenUser(req, res, conn))
     app.get('/course', (req, res) => courseList(req, res, conn))
     app.post('/course/create', (req, res) => courseCreate(req, res, conn))
+    app.put('/course/edit/:id', (req, res) => courseEdit(req, res, conn))
+    app.get('/course/:id', (req, res) => courseById(req, res, conn))
 }
 
 app.listen(8000, async () => {
