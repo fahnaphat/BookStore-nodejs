@@ -5,7 +5,7 @@ axios.get('http://localhost:8000')
     .then(res => {
         // console.log('Respone:',res)
         if (res.data.valid) {
-            console.log(res.data.name)
+            // console.log(res.data.name)
             let role = res.data.name.split(":")[0]
             if (role === "1") {
                 window.location.href = './admin.html'

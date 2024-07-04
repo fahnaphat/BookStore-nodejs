@@ -36,3 +36,17 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.close-del {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-del:hover,
+.close-del:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

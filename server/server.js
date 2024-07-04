@@ -11,12 +11,13 @@ import courseCreate from './routes/courseCreate.js'
 import courseList from './routes/courseList.js'
 import courseEdit from './routes/courseEdit.js'
 import courseById from './routes/courseById.js'
+import courseDelete from './routes/courseDelete.js'
 
 const app = express()
 app.use(bodyParser.json())
 app.use(cors({
     origin: ["http://127.0.0.1:5500"],
-    methods: ['GET', 'POST', 'PUT'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 }))
@@ -68,6 +69,7 @@ const setupRoutes = (app, conn) => {
     app.post('/course/create', (req, res) => courseCreate(req, res, conn))
     app.put('/course/edit/:id', (req, res) => courseEdit(req, res, conn))
     app.get('/course/:id', (req, res) => courseById(req, res, conn))
+    app.delete('/course/delete/:id', (req, res) => courseDelete(req, res, conn))
 }
 
 app.listen(8000, async () => {

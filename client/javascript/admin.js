@@ -2,12 +2,10 @@ axios.defaults.withCredentials = true
 let sessionName = ''
 axios.get('http://localhost:8000')
     .then(res => {
-        // console.log('Respone:',res)
         if (res.data.valid) {
-            console.log(res.data.name)
+            // console.log(res.data.name)
             let user = res.data.name.split(":")
             if (user[0] === "1") {
-                // window.location.href = './admin.html'
                 sessionName = res.data.name
                 document.getElementById('text').textContent = `Welcome ${user[2]}`
                 document.getElementById('login-btn').style.display = 'none';
@@ -25,7 +23,7 @@ axios.get('http://localhost:8000/course')
         let courseCard = document.getElementById('list-course')
         let item = ''
         if (res.data.length > 0) {
-            console.log(res.data)
+            // console.log(res.data)
             item = '<div>'
             for (let i = 0; i < res.data.length; i++) {
                 let subjectId = res.data[i].id;
@@ -92,13 +90,13 @@ function EditCourse(subjectId) {
                 teacher: document.getElementById('teacher').value,
                 status: document.querySelector('input[name="status"]:checked').value
             }
-            console.log(updateSubject)
+            // console.log(updateSubject)
             
             const response = await axios.put(
                 `http://localhost:8000/course/edit/${subjectId}`, 
                 updateSubject
             )
-            console.log(response.data)
+            // console.log(response.data)
     
             if (response.data.success) {
                 alert(response.data.message)
@@ -115,7 +113,7 @@ function EditCourse(subjectId) {
             let errMsg = error.response.data.message
             // console.log(error.message)
             if (error.response && error.response.data) {
-                console.log(errMsg)
+                // console.log(errMsg)
                 errors = error.response.data.errors
                 // console.log("what res:", error.response.data.errors)
             }
@@ -133,7 +131,32 @@ function EditCourse(subjectId) {
 }
 
 function DeleteCourse(subjectId) {
-    console.log(`Delete course with ID: ${subjectId}`);
+    // console.log(`Delete course with ID: ${subjectId}`);
+    var modelDel = document.getElementById('confirmModal');
+    var span = document.getElementsByClassName("close-del")[0];
+    var cancelbtn = document.getElementById("cancelDelete");
+    var deletebtn = document.getElementById("confirmDelete");
+    modelDel.style.display = "block";
+    span.onclick = function() {
+        modelDel.style.display = "none";
+    }
+    cancelbtn.onclick = function() {
+        modelDel.style.display = "none";
+    }
+
+    deletebtn.onclick = async function() {
+        try {
+            const response = await axios.delete(`http://localhost:8000/course/delete/${subjectId}`)
+    
+            if (response.data.success) {
+                alert(response.data.message)
+                window.location.href = './admin.html'
+            }
+        } catch (error) {
+            // let errMsg = error.response.data.message
+            console.log(error.response.data.message)
+        }
+    }
 }
 
     

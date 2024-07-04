@@ -6,7 +6,7 @@ const courseEdit = async (req, res, conn) => {
         const subjectData = req.body
         const errors = validateData(subjectData)
         if(errors.length > 0) {
-            console.log(errors)
+            // console.log(errors)
             throw {
                 errorMessage: 'Incomplete information',
                 errors: errors

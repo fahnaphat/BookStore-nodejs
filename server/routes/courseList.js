@@ -1,10 +1,10 @@
 const courseList = async (req, res, conn) => {
     try {
         let roleId = req.session.name.split(":")[0]
-        console.log("rold id:",roleId)
+        // console.log("rold id:",roleId)
         if (roleId === "1") {
             let [results] = await conn.query('SELECT * FROM Subjects')
-            console.log(results)
+            // console.log(results)
             res.json(results)
         } 
         else if (roleId === "2") {
