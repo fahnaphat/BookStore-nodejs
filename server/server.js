@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser'
 import registerUser from './routes/registerUser.js'
 import authenUser from './routes/authentication.js'
 import courseCreate from './routes/courseCreate.js'
+import courseList from './routes/courseList.js'
 
 const app = express()
 app.use(bodyParser.json())
@@ -61,7 +62,8 @@ app.post('/logout', (req, res) => {
 const setupRoutes = (app, conn) => {
     app.post('/register', (req, res) => registerUser(req, res, conn))
     app.post('/authen', (req, res) => authenUser(req, res, conn))
-    app.post('/create/course', (req, res) => courseCreate(req, res, conn))
+    app.get('/course', (req, res) => courseList(req, res, conn))
+    app.post('/course/create', (req, res) => courseCreate(req, res, conn))
 }
 
 app.listen(8000, async () => {

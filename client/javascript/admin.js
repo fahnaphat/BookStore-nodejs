@@ -14,12 +14,47 @@ axios.get('http://localhost:8000')
                 window.location.href = './index.html'
             }
         }
-        // else {
-        //     window.location.href = './login.html'
-        // }
     })
     .catch(err => console.log(err))
 
+/* list all courses */
+
+axios.get('http://localhost:8000/course')
+    .then(res => {
+        let courseCard = document.getElementById('list-course')
+        let item = ''
+        if (res.data.length > 0) {
+            console.log(res.data)
+            item = '<div>'
+            for (let i = 0; i < res.data.length; i++) {
+                let subjectId = res.data[i].id;
+                item += '<div>'
+                item += `<h3>${res.data[i].name}</h3>`  
+                item += `<p>About this course: ${res.data[i].category}</p>`
+                item += `<p>Teacher: ${res.data[i].teacher}</p>`
+                item += `<button id="edit-btn-${subjectId}" onclick="EditCourse(${subjectId})">Edit</button>`;
+                item += `<button id="delete-btn-${subjectId}" onclick="DeleteCourse(${subjectId})">Delete</button>`;
+                item += `<button id="close-btn-${subjectId}" onclick="CloseCourse(${subjectId})">Close</button>`;
+                item += '</div>'
+                item += `<hr/>`
+            }
+            item += '</div>'
+            courseCard.innerHTML = item
+        }
+    })
+    .catch(err => console.log(err))
+
+function EditCourse(subjectId) {
+    console.log(`Edit course with ID: ${subjectId}`);
+}
+
+function DeleteCourse(subjectId) {
+    console.log(`Delete course with ID: ${subjectId}`);
+}
+
+function CloseCourse(subjectId) {
+    console.log(`Close course with ID: ${subjectId}`);
+}
     
 const logout = () => {
     axios.post('http://localhost:8000/logout')
@@ -40,9 +75,11 @@ const createNewCourse = () => {
     modal.style.display = "block";
     span.onclick = function() {
         modal.style.display = "none";
+        window.location.href = './index.html'
     }
     closebtn.onclick = function() {
         modal.style.display = "none";
+        window.location.href = './index.html'
     }
     // When the user clicks anywhere outside of the modal, close it
     // window.onclick = function(event) {
@@ -79,7 +116,7 @@ const submitCreate = async () => {
         console.log(subjectData)
         
         const response = await axios.post(
-            'http://localhost:8000/create/course', 
+            'http://localhost:8000/course/create', 
             subjectData
         )
         console.log(response.data)
