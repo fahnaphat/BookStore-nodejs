@@ -10,7 +10,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0f2b47; /* DodgerBlue */
+    background-color: #0f2b47; /* Darker blue */
     padding: 10px 20px;
 }
 
@@ -36,16 +36,11 @@ nav button:hover {
 
 main {
     padding: 20px;
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
     color: #0f2b47;
-}
-
-h2 {
-    text-align: center;
-    color: #555;
 }
 
 .container {
@@ -53,6 +48,14 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+.container-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
 }
 
 .course-card {
@@ -63,6 +66,7 @@ h2 {
     overflow: hidden;
     width: 800px;
     transition: transform 0.3s;
+    position: relative;
 }
 
 .course-card:hover {
@@ -71,6 +75,7 @@ h2 {
 
 .course-card .content {
     padding: 25px;
+    text-align: left; /* Align content to the left */
 }
 
 .course-card .content h3 {
@@ -80,7 +85,7 @@ h2 {
 
 .course-card .content p {
     color: #555;
-    margin: 0px 0 10px 10px;
+    margin: 0 0 10px 10px;
 }
 
 .course-card .content button {
@@ -94,5 +99,38 @@ h2 {
 }
 
 .course-card .content button:hover {
-    background-color: #0f2b47; /* Darker blue */
+    background-color: #0051a1; /* Darker blue */
+}
+
+.course-card .enroll-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.numenroll-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn {
+    display: flex;
+    justify-content: left;
+    gap: 8px;
+}
+
+#course-enrolled-btn, #myBtn {
+    background-color: #0f2b47;
+    color: white;
+    border: none;
+    padding: 20px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 15px;
+}
+
+#course-enrolled-btn:hover, #myBtn:hover {
+    background-color: #0051a1; /* Darker blue */
 }

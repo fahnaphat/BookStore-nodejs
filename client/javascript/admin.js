@@ -24,25 +24,28 @@ axios.get('http://localhost:8000/course')
         let item = ''
         if (res.data.length > 0) {
             // console.log(res.data)
-            item = '<div>'
             for (let i = 0; i < res.data.length; i++) {
+                item += '<div class="course-card">'
                 let subjectId = res.data[i].id;
-                item += '<div>'
+                item += '<div class="content">'
                 item += `<h3>${res.data[i].name}</h3>`  
-                item += `<p>About this course: ${res.data[i].category}</p>`
+                item += `<p>Description: ${res.data[i].category}</p>`
                 item += `<p>Teacher: ${res.data[i].teacher}</p>`
+                item += '<ul>'
                 if (res.data[i].status === 'active') {
-                    item += `<p>Status: Open!</p>`
+                    item += `<li class="status open">Open</li>`
                 } else {
-                    item += `<p>Status: Close</p>`
+                    item += `<li class="status dead">Close</li>`
                 }
-                item += `<button id="edit-btn-${subjectId}" onclick="EditCourse(${subjectId})">Edit</button>`;
-                item += `<button id="delete-btn-${subjectId}" onclick="DeleteCourse(${subjectId})">Delete</button>`;
-                item += `<button id="seeEnroll-btn-${subjectId}" onclick="SeeCourse(${subjectId})">Number of Enrolled</button>`
+                item += '</ul>'
+                item += '<div class="btn">'
+                item += `<button id="edit-btn-${subjectId}" class="edit-btn" onclick="EditCourse(${subjectId})">Edit</button>`;
+                item += `<button id="delete-btn-${subjectId}" class="del-btn" style="background-color: #f44336;" onclick="DeleteCourse(${subjectId})">Delete</button>`;
                 item += '</div>'
-                item += `<hr/>`
+                item += `<button id="seeEnroll-btn-${subjectId}" class="numenroll-btn" onclick="SeeCourse(${subjectId})">Number of Enrolled</button>`
+                item += '</div>'
+                item += '</div>'
             }
-            item += '</div>'
             courseCard.innerHTML = item
         }
     })

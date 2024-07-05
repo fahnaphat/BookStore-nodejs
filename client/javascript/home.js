@@ -50,23 +50,22 @@ axios.get('http://localhost:8000/course')
         let item = ''
         if (res.data.length > 0) {
             // console.log(res.data)
-            item = '<div>'
             for (let i = 0; i < res.data.length; i++) {
+                item += '<div class="course-card">'
                 let subjectId = res.data[i].id;
-                item += '<div>'
+                item += '<div class="content">'
                 item += `<h3>${res.data[i].name}</h3>`  
                 item += `<p>About this course: ${res.data[i].category}</p>`
                 item += `<p>Teacher: ${res.data[i].teacher}</p>`
                 if (enrolled_subjectId.includes(subjectId)) {
-                    item += `<button type="button" disabled>This course is enrolled</button>`;
+                    item += `<button type="button" class="enroll-btn" disabled>This course is enrolled</button>`;
                 } else {
-                    item += `<button id="enroll-btn-${subjectId}" onclick="EnrollCourse(${subjectId})">Enroll</button>`;
+                    item += `<button id="enroll-btn-${subjectId}" class="enroll-btn" onclick="EnrollCourse(${subjectId})">Enroll</button>`;
 
                 }
                 item += '</div>'
-                item += `<hr/>`
+                item += '</div>'
             }
-            item += '</div>'
             courseCard.innerHTML = item
         }
     })

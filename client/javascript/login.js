@@ -3,12 +3,9 @@ axios.get('http://localhost:8000')
     .then(res => {
         // console.log('Respone:',res)
         if (res.data.valid) {
-            console.log(res.data.name)
+            // console.log(res.data.name)
             window.location.href = './index.html'
         }
-        // else {
-        //     window.location.href = './index.html'
-        // }
     })
     .catch(err => console.log(err))
 

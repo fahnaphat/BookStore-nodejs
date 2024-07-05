@@ -28,17 +28,17 @@ const displayListCourses = async () => {
             let item = ''
             if (res.data.length > 0) {
                 // console.log(res.data)
-                item = '<div>'
                 for (let i = 0; i < res.data.length; i++) {
-                    let subjectId = res.data[i].id;
-                    item += '<div>'
+                    item += '<div class="course-card">'
+                    // let subjectId = res.data[i].id;
+                    item += '<div class="content">'
                     item += `<h3>${res.data[i].name}</h3>`  
-                    item += `<p>About this course: ${res.data[i].category}</p>`
+                    item += `<p>Description: ${res.data[i].category}</p>`
                     item += `<p>Teacher: ${res.data[i].teacher}</p>`
                     item += '</div>'
-                    item += `<hr/>`
+                    // item += `<hr/>`
+                    item += '</div>'
                 }
-                item += '</div>'
                 courseCard.innerHTML = item
             }
         })

@@ -1,3 +1,51 @@
+@import "compass/css3";
+
+ul {
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.status {
+    &.open:before {
+        background-color: #94E185;
+        border-color: #78D965;
+        box-shadow: 0px 0px 4px 1px #94E185;
+    }
+
+    &.dead:before {
+        background-color: #C9404D;
+        border-color: #C42C3B;
+        box-shadow: 0px 0px 4px 1px #C9404D;
+    }
+
+    &:before {
+        content: ' ';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-right: 10px;
+        border: 1px solid #000;
+        border-radius: 7px;
+    }
+}
+
+#myBtn {
+    background-color: #0f2b47;
+    color: white;
+    border: none;
+    padding: 20px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -10px;
+    transition: background-color 0.3s;
+    font-size: 15px;
+}
+
+#myBtn:hover {
+    background-color: #0051a1; /* Darker blue */
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -9,8 +57,7 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -20,33 +67,105 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px; /* Maximum width for the modal */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: relative; /* To position close button inside */
 }
 
 /* The Close Button */
 .close {
     color: #aaaaaa;
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 20px;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
-    cursor: pointer;
 }
 
-.close-del {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+/* Additional Modal Styling */
+.modal-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.close-del:hover,
-.close-del:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.modal-body {
+    padding: 10px 0;
 }
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 20px;
+    text-align: right;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="radio"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    color: #333;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin: 0 10px 0 0;
+}
+
+input[type="radio"] + label {
+    display: inline;
+    margin-right: 15px;
+}
+
+button {
+    background-color: #0f2b47;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0051a1; /* Darker blue */
+}
+
+button#cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+button#cancel-btn:hover {
+    background-color: #aaa;
+}
+
+.error {
+    color: red;
+    text-align: left;
+}
+
