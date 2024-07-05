@@ -15,6 +15,7 @@ import courseDelete from './routes/courseDelete.js'
 import courseEnroll from './routes/courseEnroll.js'
 import courseEnrollByUserId from './routes/courseEnrollByUserId.js'
 import courseEnrollDelete from './routes/courseEnrollDelete.js'
+import courseInfoEnroll from './routes/courseInfoEnroll.js'
 
 const app = express()
 app.use(bodyParser.json())
@@ -76,6 +77,7 @@ const setupRoutes = (app, conn) => {
     app.delete('/course/delete/:id', (req, res) => courseDelete(req, res, conn))
     app.post('/course/enroll', (req, res) => courseEnroll(req, res, conn))
     app.delete('/course/enroll/delete/:id', (req, res) => courseEnrollDelete(req, res, conn))
+    app.get('/course/enroll/info/:id', (req, res) => courseInfoEnroll(req, res, conn))
 }
 
 app.listen(8000, async () => {

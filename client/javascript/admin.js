@@ -15,7 +15,7 @@ axios.get('http://localhost:8000')
             }
         }
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err.response))
 
 /* list all courses */
 axios.get('http://localhost:8000/course')
@@ -38,6 +38,7 @@ axios.get('http://localhost:8000/course')
                 }
                 item += `<button id="edit-btn-${subjectId}" onclick="EditCourse(${subjectId})">Edit</button>`;
                 item += `<button id="delete-btn-${subjectId}" onclick="DeleteCourse(${subjectId})">Delete</button>`;
+                item += `<button id="seeEnroll-btn-${subjectId}" onclick="SeeCourse(${subjectId})">Number of Enrolled</button>`
                 item += '</div>'
                 item += `<hr/>`
             }
@@ -45,7 +46,7 @@ axios.get('http://localhost:8000/course')
             courseCard.innerHTML = item
         }
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err.response))
 
 function EditCourse(subjectId) {
     console.log(`Edit course with ID: ${subjectId}`);
@@ -73,7 +74,7 @@ function EditCourse(subjectId) {
                 }
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response))
 
     modal.style.display = "block";
     span.onclick = function() {
@@ -162,6 +163,10 @@ function DeleteCourse(subjectId) {
             console.log(error.response.data.message)
         }
     }
+}
+
+function SeeCourse(subjectId) {
+    window.location.href = `adminCourse.html?sid=${subjectId}`
 }
 
     
