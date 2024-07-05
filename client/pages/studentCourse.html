@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course for dev</title>
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../javascript/studentCourse.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">Courses</div>
+        <button id="login-btn" onclick="window.location.href='login.html'">Login</button>
+        <button id="logout-btn" style="display:none;" onclick="logout()">logout</button>
+    </nav>
+    <main>
+        <div>
+            <h1 id="text">My Courses</h1>
+            <button id="back" onclick="window.location.href='home.html'">Back to Homepage</button>
+        </div>
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <span class="close-del">&times;</span>
+                <h4>Are you sure you want to cancel enroll this course?</h4>
+                <button id="confirmDelete">Yes</button>
+                <button id="cancelDelete">No</button>
+            </div>
+        </div>
+        <div class="container" id="mycourse-list"></div>
+    </main>
+</body>
+</html>
