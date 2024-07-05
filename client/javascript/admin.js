@@ -31,6 +31,11 @@ axios.get('http://localhost:8000/course')
                 item += `<h3>${res.data[i].name}</h3>`  
                 item += `<p>About this course: ${res.data[i].category}</p>`
                 item += `<p>Teacher: ${res.data[i].teacher}</p>`
+                if (res.data[i].status === 'active') {
+                    item += `<p>Status: Open!</p>`
+                } else {
+                    item += `<p>Status: Close</p>`
+                }
                 item += `<button id="edit-btn-${subjectId}" onclick="EditCourse(${subjectId})">Edit</button>`;
                 item += `<button id="delete-btn-${subjectId}" onclick="DeleteCourse(${subjectId})">Delete</button>`;
                 item += '</div>'
