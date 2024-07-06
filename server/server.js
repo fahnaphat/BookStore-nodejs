@@ -4,6 +4,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
+import 'dotenv/config'
 
 import registerUser from './routes/registerUser.js'
 import authenUser from './routes/authentication.js'
@@ -40,10 +41,10 @@ app.use(session({
 let conn = null
 const connectMySQL = async () => {
     conn = await mysql.createConnection({
-        host: 'localhost',
-        user: 'phpmyadmin',
-        password: 'fahnaphat',
-        database: 'coursesweb'
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE
     })
 }
 
