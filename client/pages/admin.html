@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course for dev</title>
-    <link rel="stylesheet" href="../style/home.css">
     <link rel="stylesheet" href="../style/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../javascript/admin.js"></script>
@@ -31,7 +30,7 @@
                         <div id="error-cname" style="color: red;"></div>
                     </div>
                     <div>
-                        <label for="category">Category:</label>
+                        <label for="category">Description:</label>
                         <input type="text" id="category" name="category">
                         <div id="error-category" style="color: red;"></div>
                     </div>
@@ -40,8 +39,8 @@
                         <input type="text" id="teacher" name="teacher">
                         <div id="error-teacher" style="color: red;"></div>
                     </div>
-                    <div>
-                        <label for="teacher">Status of Course:</label>
+                    <div class="status-course">
+                        <label for="teacher" style="margin-bottom: 10px;">Status of Course:</label>
                         <input type="radio" id="active" name="status" value="active" checked>
                         <label for="active">Open</label>
                         <input type="radio" id="inactive" name="status" value="inactive">

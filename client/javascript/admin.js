@@ -39,10 +39,12 @@ axios.get('http://localhost:8000/course')
                 }
                 item += '</ul>'
                 item += '<div class="btn">'
+                item += '<div class="edit-del-btn">'
                 item += `<button id="edit-btn-${subjectId}" class="edit-btn" onclick="EditCourse(${subjectId})">Edit</button>`;
                 item += `<button id="delete-btn-${subjectId}" class="del-btn" style="background-color: #f44336;" onclick="DeleteCourse(${subjectId})">Delete</button>`;
                 item += '</div>'
                 item += `<button id="seeEnroll-btn-${subjectId}" class="numenroll-btn" onclick="SeeCourse(${subjectId})">Number of Enrolled</button>`
+                item += '</div>'
                 item += '</div>'
                 item += '</div>'
             }
@@ -55,7 +57,6 @@ function EditCourse(subjectId) {
     console.log(`Edit course with ID: ${subjectId}`);
     document.getElementById('create-btn').style.display = 'none';
     document.getElementById('edit-btn').style.display = 'inline-block';
-    let id = subjectId
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
     var cancelbtn = document.getElementById("cancel-btn");

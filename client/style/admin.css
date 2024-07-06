@@ -1,5 +1,138 @@
 @import "compass/css3";
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f2b47; /* Darker blue */
+    padding: 30px 50px;
+}
+
+nav .logo {
+    font-size: 1.9em;
+    color: white;
+}
+
+nav button {
+    background-color: white;
+    color: #0f2b47;
+    border: 1px solid #0f2b47;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: unset;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: medium;
+    font-weight: 500;
+}
+
+nav button:hover {
+    background-color: #0051a1;
+    color: white;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #0f2b47;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
+}
+
+.container-title #myBtn {
+    background-color: #0f2b47;
+    color: white;
+    border: none;
+    padding: 20px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 15px;
+}
+
+.container-title #myBtn:hover {
+    background-color: #0051a1; /* Darker blue */
+}
+
+.course-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 800px;
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+.course-card .content {
+    padding: 25px;
+    text-align: left; /* Align content to the left */
+}
+
+.course-card .content h3 {
+    color: #0f2b47;
+    margin: 0 0 15px 0;
+}
+
+.course-card .content p {
+    color: #555;
+    margin: 0 0 10px 10px;
+}
+
+.course-card .content button {
+    background-color: #0f2b47;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.course-card .content button:hover {
+    background-color: #0051a1; /* Darker blue */
+}
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-del-btn {
+    display: flex;
+    justify-content: left;
+    gap: 8px;
+}
+
 ul {
     margin: 10px;
     padding: 0;
@@ -62,6 +195,9 @@ ul {
 
 /* Modal Content */
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -74,7 +210,7 @@ ul {
 }
 
 /* The Close Button */
-.close {
+.close, .close-del {
     color: #aaaaaa;
     position: absolute;
     top: 10px;
@@ -83,6 +219,12 @@ ul {
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s;
+}
+
+.close-del:hover,
+.close-del:focus {
+    color: #000;
+    text-decoration: none;
 }
 
 .close:hover,
@@ -97,7 +239,6 @@ ul {
     padding-bottom: 10px;
     margin-bottom: 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -116,10 +257,10 @@ label {
     display: block;
     margin-top: 10px;
     color: #333;
+    font-weight: 500;
 }
 
-input[type="text"],
-input[type="radio"] {
+input[type="text"] {
     width: calc(100% - 20px);
     padding: 8px;
     margin: 10px 0;
@@ -132,12 +273,12 @@ input[type="radio"] {
 
 input[type="radio"] {
     width: auto;
-    margin: 0 10px 0 0;
+    margin: 0 5px 0 12px;
 }
 
 input[type="radio"] + label {
     display: inline;
-    margin-right: 15px;
+    margin-right: 30px;
 }
 
 button {
@@ -155,12 +296,12 @@ button:hover {
     background-color: #0051a1; /* Darker blue */
 }
 
-button#cancel-btn {
+button#cancel-btn, button#cancelDelete {
     background-color: #ccc;
     color: #333;
 }
 
-button#cancel-btn:hover {
+button#cancel-btn:hover, button#cancelDelete:hover {
     background-color: #aaa;
 }
 

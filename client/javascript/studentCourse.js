@@ -4,11 +4,10 @@ const getStudentId = async function() {
     await axios.get('http://localhost:8000')
         .then(res => {
             if(res.data.valid) {
-                console.log(res.data.name)
+                // console.log(res.data.name)
                 let user = res.data.name.split(":")
                 if (user[0] === "2") {
                     sessionStu = user[1]
-                    // document.getElementById('text').textContent = `Welcome ${user[2]} - You can Enroll course.`
                     document.getElementById('login-btn').style.display = 'none';
                     document.getElementById('logout-btn').style.display = 'inline-block';
                 } else {
@@ -64,7 +63,7 @@ const getAllCourse = (courseById) => {
         item += `<td>${courseById[i][0].name}</td>`
         item += `<td>${courseById[i][0].category}</td>`
         item += `<td>${courseById[i][0].teacher}</td>`
-        item += `<td><button id="cancelEnroll-${courseById[i][0].id}" onclick="EnrollCourse(${courseById[i][0].id})">cancel Enroll</button></td>`
+        item += `<td><button id="cancelEnroll-${courseById[i][0].id}" class="cancelEnroll" onclick="EnrollCourse(${courseById[i][0].id})">Cancel Enroll</button></td>`
         item += '</tr>'
     }
     item += '</table>'

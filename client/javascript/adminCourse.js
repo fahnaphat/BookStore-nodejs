@@ -5,7 +5,7 @@ const getAdminId = async function() {
     await axios.get('http://localhost:8000')
         .then(res => {
             if(res.data.valid) {
-                console.log(res.data.name)
+                // console.log(res.data.name)
                 let user = res.data.name.split(":")
                 if (user[0] === "1") {
                     sessionStu = user[1]
@@ -20,6 +20,8 @@ const getAdminId = async function() {
     
     // console.log('student view:',sessionStu)
 }
+
+getAdminId();
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var subjectId = getParameterByName('sid');
     
     const getCourseEnrolled = async function(subjectId) {
-        console.log('Subject ID:', subjectId);
+        // console.log('Subject ID:', subjectId);
         await axios.get(`http://localhost:8000/course/enroll/info/${subjectId}`)
         .then(res => {
             // console.log(res.data)
@@ -65,18 +67,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const showCourseInfo = function(courseInfo) {
-    console.log(courseInfo)
+    // console.log(courseInfo)
     let courseCard = document.getElementById('course-info')
-    let item = '<div>'
-    item += `<h3>Course: ${courseInfo[0].subject_name}</h3>`  
-    item += `<p>About this course: ${courseInfo[0].category}</p>`
+    let item = '<div class="course-card">'
+    item += `<h3>${courseInfo[0].subject_name}</h3>`  
+    item += `<p>Description: ${courseInfo[0].category}</p>`
     item += `<p>Teacher: ${courseInfo[0].teacher}</p>`
     if (courseInfo[0].status === 'active') {
         item += `<p>Status: Open</p>`
     } else {
         item += `<p>Status: Close</p>`
     }
-    item += '<hr/>'
     item += '</div>'
     courseCard.innerHTML = item
 
@@ -104,16 +105,15 @@ const showCourseInfo = function(courseInfo) {
 const showCourseInfoNotEnroll = function(courseInfo) {
     console.log(courseInfo)
     let courseCard = document.getElementById('course-info')
-    let item = '<div>'
-    item += `<h3>Course: ${courseInfo[0].name}</h3>`  
-    item += `<p>About this course: ${courseInfo[0].category}</p>`
+    let item = '<div class="course-card">'
+    item += `<h3>${courseInfo[0].name}</h3>`  
+    item += `<p>Description: ${courseInfo[0].category}</p>`
     item += `<p>Teacher: ${courseInfo[0].teacher}</p>`
     if (courseInfo[0].status === 'active') {
         item += `<p>Status: Open</p>`
     } else {
         item += `<p>Status: Close</p>`
     }
-    item += '<hr/>'
     item += '</div>'
     courseCard.innerHTML = item
     document.getElementById('enroll-table').textContent = 'No course registrants found.'

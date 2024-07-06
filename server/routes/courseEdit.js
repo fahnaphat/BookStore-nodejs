@@ -25,7 +25,7 @@ const courseEdit = async (req, res, conn) => {
         }
         res.json({ message: 'Subject updated successfully', success: true, subjectId: subjectId })
     } catch (error) {
-        console.error('Error updating course:', error)
+        // console.error('Error updating course:', error)
         // res.status(500).json({ error: 'Error updating course' })
         const errMessage = error.errorMessage || 'Something went wrong!'
         return res.status(500).json({

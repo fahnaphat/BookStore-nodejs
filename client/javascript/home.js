@@ -3,11 +3,11 @@ let sessionStu = ''
 axios.get('http://localhost:8000')
     .then(res => {
         if(res.data.valid) {
-            console.log(res.data.name)
+            // console.log(res.data.name)
             let user = res.data.name.split(":")
             if (user[0] === "2") {
                 sessionStu = user[1]
-                document.getElementById('text').textContent = `Welcome ${user[2]} - You can Enroll course.`
+                document.getElementById('text').textContent = `Welcome ${user[2]}`
                 document.getElementById('login-btn').style.display = 'none';
                 document.getElementById('logout-btn').style.display = 'inline-block';
             } else {
@@ -58,7 +58,7 @@ axios.get('http://localhost:8000/course')
                 item += `<p>About this course: ${res.data[i].category}</p>`
                 item += `<p>Teacher: ${res.data[i].teacher}</p>`
                 if (enrolled_subjectId.includes(subjectId)) {
-                    item += `<button type="button" class="enroll-btn" disabled>This course is enrolled</button>`;
+                    item += `<button type="button" class="enrolled-btn" disabled>This course is enrolled</button>`;
                 } else {
                     item += `<button id="enroll-btn-${subjectId}" class="enroll-btn" onclick="EnrollCourse(${subjectId})">Enroll</button>`;
 
